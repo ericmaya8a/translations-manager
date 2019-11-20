@@ -46,14 +46,13 @@ const transformTextToJson = (filePath, jsonFileName) => {
       throw err;
     }
 
-    const jsonStructure = uniq(
-      data.split('\n').map(item => {
-        if (item.length) {
-          const row = item.split('=');
-          return `"${row[0]}": "${row[1]}"`;
-        }
-      })
-    );
+    const jsonStructure = data.split('\n').map(item => {
+      if (item.length) {
+        const row = item.split('=');
+        return `"${row[0]}": "${row[1]}"`;
+      }
+    });
+
     jsonStructure.forEach(item => {
       if (item) {
         output += `${item},`;
